@@ -10,13 +10,20 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+    const normalizeUser = (data) => {
+        const u = data?.user || data;
+        if (!u) return null;
+        const role = u.role || (u.email?.endsWith('@dsofts.com') ? 'admin' : 'client');
+        return { ...u, role };
+    };
+
     useEffect(() => {
         const checkAuth = async () => {
             const token = localStorage.getItem('token');
             if (token) {
                 try {
                     const response = await api.get('/auth/me');
-                    setUser(response.data);
+                    setUser(normalizeUser(response.data));
                     setIsAuthenticated(true);
                 } catch (error) {
                     console.error('Auth check failed:', error);
@@ -36,7 +43,7 @@ export const AuthProvider = ({ children }) => {
             const response = await api.post('/auth/login', { email, password });
             const { token, user } = response.data;
             localStorage.setItem('token', token);
-            setUser(user);
+            setUser(normalizeUser(user));
             setIsAuthenticated(true);
             return { success: true };
         } catch (error) {
@@ -53,7 +60,7 @@ export const AuthProvider = ({ children }) => {
             const response = await api.post('/auth/signup', userData);
             const { token, user } = response.data;
             localStorage.setItem('token', token);
-            setUser(user);
+            setUser(normalizeUser(user));
             setIsAuthenticated(true);
             return { success: true };
         } catch (error) {

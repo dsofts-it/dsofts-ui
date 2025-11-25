@@ -32,6 +32,17 @@ const Login = () => {
         }
     };
 
+    const handleAdminLogin = async () => {
+        setLoading(true);
+        const result = await login('rohan@dsofts.in', 'rohan123');
+        setLoading(false);
+        if (result.success) {
+            navigate('/admin');
+        } else {
+            setError(result.message || 'Admin login failed');
+        }
+    };
+
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
             {/* Background Elements */}
@@ -166,6 +177,13 @@ const Login = () => {
                                 Sign up
                             </Link>
                         </p>
+                        <button
+                            type="button"
+                            onClick={handleAdminLogin}
+                            className="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-primary-600 hover:text-primary-700"
+                        >
+                            Quick Admin Login
+                        </button>
                     </div>
                 </div>
             </motion.div>

@@ -48,3 +48,10 @@ The frontend is configured to connect to the live backend at:
 `https://dsofts-server-bj3s.onrender.com/api`
 
 To change this, update `src/api/axios.js`.
+
+## Deploying to Render (Static Site)
+
+- Build command: `npm install && npm run build`
+- Publish directory: `dist`
+- `render.yaml` is included to provision a Render Static Site with a global rewrite of all routes to `/index.html` so React Router works on hard refresh.
+- If configuring via the Render dashboard instead of the blueprint, keep `static.json` in the repository so the same SPA rewrite is applied automatically.

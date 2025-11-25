@@ -19,6 +19,7 @@ export const clientApi = {
 // Admin Endpoints
 export const adminApi = {
   // Portfolio Projects
+  getProjects: () => api.get('/projects'),
   createProject: (data) => api.post('/admin/projects', data),
   updateProject: (id, data) => api.put(`/admin/projects/${id}`, data),
   deleteProject: (id) => api.delete(`/admin/projects/${id}`),
@@ -30,6 +31,7 @@ export const adminApi = {
     api.put(`/admin/client-projects/${id}`, data),
 
   // Services
+  getServices: () => api.get('/services'),
   createService: (data) => api.post('/services', data),
   updateService: (id, data) => api.put(`/services/${id}`, data),
   deleteService: (id) => api.delete(`/services/${id}`),

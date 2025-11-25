@@ -109,6 +109,18 @@ const ProjectDetails = () => {
                                             </span>
                                         ))}
                                     </div>
+
+                                    {project.websiteUrl && (
+                                        <a
+                                            href={project.websiteUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="mt-5 inline-flex items-center gap-2 text-primary-600 font-semibold hover:text-primary-700"
+                                        >
+                                            Visit Website
+                                            <FiExternalLink />
+                                        </a>
+                                    )}
                                 </div>
                             )}
                         </div>

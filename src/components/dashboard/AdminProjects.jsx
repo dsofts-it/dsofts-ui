@@ -17,6 +17,7 @@ const AdminProjects = () => {
         techStack: '', // comma separated
         clientName: '',
         clientRating: '',
+        websiteUrl: '',
         completedAt: '',
         isFeatured: false,
         thumbnailImageUrl: '',
@@ -50,6 +51,7 @@ const AdminProjects = () => {
             techStack: project.techStack.join(', '),
             clientName: project.clientName || '',
             clientRating: project.clientRating || '',
+            websiteUrl: project.websiteUrl || '',
             completedAt: project.completedAt ? project.completedAt.split('T')[0] : '',
             isFeatured: project.isFeatured || false,
             thumbnailImageUrl: project.thumbnailImageUrl || '',
@@ -93,6 +95,7 @@ const AdminProjects = () => {
         const data = {
             ...formData,
             techStack: formData.techStack.split(',').map(t => t.trim()).filter(t => t),
+            websiteUrl: formData.websiteUrl || undefined,
             clientRating: formData.clientRating ? Number(formData.clientRating) : undefined
         };
 
@@ -197,6 +200,17 @@ const AdminProjects = () => {
                                     onChange={e => setFormData({ ...formData, slug: e.target.value })}
                                 />
                             </div>
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Live URL (optional)</label>
+                            <input
+                                type="url"
+                                className="input-field"
+                                placeholder="https://example.com"
+                                value={formData.websiteUrl}
+                                onChange={e => setFormData({ ...formData, websiteUrl: e.target.value })}
+                            />
                         </div>
 
                         <div>

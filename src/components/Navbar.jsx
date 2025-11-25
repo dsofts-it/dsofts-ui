@@ -74,10 +74,23 @@ const Navbar = () => {
                                 {/* Dropdown */}
                                 <div className="absolute right-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
                                     <div className="bg-white rounded-xl shadow-xl border border-gray-100 p-2 w-48">
-                                        <Link to="/dashboard" className="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
-                                            <LayoutDashboard size={16} />
-                                            Dashboard
-                                        </Link>
+                                        {user?.role === 'admin' ? (
+                                            <>
+                                                <Link to="/admin" className="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
+                                                    <LayoutDashboard size={16} />
+                                                    Admin Panel
+                                                </Link>
+                                                <Link to="/dashboard" className="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
+                                                    <LayoutDashboard size={16} />
+                                                    My Dashboard
+                                                </Link>
+                                            </>
+                                        ) : (
+                                            <Link to="/dashboard" className="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
+                                                <LayoutDashboard size={16} />
+                                                Dashboard
+                                            </Link>
+                                        )}
                                         <button
                                             onClick={logout}
                                             className="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors text-left"
@@ -133,6 +146,12 @@ const Navbar = () => {
                             <hr className="border-gray-100 my-2" />
                             {isAuthenticated ? (
                                 <>
+                                    {user?.role === 'admin' && (
+                                        <Link to="/admin" className="flex items-center gap-2 text-lg font-medium text-slate-700">
+                                            <LayoutDashboard size={20} />
+                                            Admin Panel
+                                        </Link>
+                                    )}
                                     <Link to="/dashboard" className="flex items-center gap-2 text-lg font-medium text-slate-700">
                                         <LayoutDashboard size={20} />
                                         Dashboard

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import Preloader from './Preloader';
+import CustomCursor from './CustomCursor';
 
 const Layout = ({ children }) => {
     const [showPreloader, setShowPreloader] = useState(true);
@@ -14,6 +15,7 @@ const Layout = ({ children }) => {
 
     return (
         <div className="flex flex-col min-h-screen relative">
+            <CustomCursor />
             {showPreloader && <Preloader />}
 
             <div className={showPreloader ? 'opacity-0 transition-opacity duration-300' : 'opacity-100 transition-opacity duration-500'}>

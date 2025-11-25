@@ -10,7 +10,7 @@ const AdminClientRequests = () => {
     const [editForm, setEditForm] = useState({
         status: '',
         deploymentUrl: '',
-        adminNotes: ''
+        notesFromAdmin: ''
     });
 
     useEffect(() => {
@@ -34,7 +34,7 @@ const AdminClientRequests = () => {
         setEditForm({
             status: req.status,
             deploymentUrl: req.deploymentUrl || '',
-            adminNotes: req.adminNotes || ''
+            notesFromAdmin: req.notesFromAdmin || req.adminNotes || ''
         });
     };
 
@@ -136,8 +136,8 @@ const AdminClientRequests = () => {
                                         <textarea
                                             className="input-field resize-none"
                                             rows="2"
-                                            value={editForm.adminNotes}
-                                            onChange={e => setEditForm({ ...editForm, adminNotes: e.target.value })}
+                                            value={editForm.notesFromAdmin}
+                                            onChange={e => setEditForm({ ...editForm, notesFromAdmin: e.target.value })}
                                         ></textarea>
                                     </div>
                                 </div>

@@ -34,7 +34,7 @@ const Login = () => {
 
     const handleAdminLogin = async () => {
         setLoading(true);
-        const result = await login('rohan@dsofts.in', 'rohan123');
+        const result = await login('rohan@dsofts.in', 'Rohan123');
         setLoading(false);
         if (result.success) {
             navigate('/admin');

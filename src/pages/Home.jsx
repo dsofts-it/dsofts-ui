@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiArrowRight, FiCheck, FiCode, FiSmartphone, FiGlobe, FiServer, FiLayout } from 'react-icons/fi';
 import { publicApi } from '../api/endpoints';
+import HappyClients from '../components/HappyClients';
 
 const Home = () => {
     const [featuredProjects, setFeaturedProjects] = useState([]);
@@ -220,6 +221,9 @@ const Home = () => {
                     </div>
                 </div>
             </section>
+
+            {/* Happy Clients */}
+            <HappyClients />
 
             {/* CTA Section */}
             <section className="py-20 bg-gray-900 text-white relative overflow-hidden">

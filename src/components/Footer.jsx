@@ -94,9 +94,9 @@ const Footer = () => {
                 </div>
 
                 <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
-                    <p>&copy; {currentYear} DSofts IT Services. All rights reserved.</p>
+                    <p>&copy; {currentYear}DSofts IT Services. All rights reserved.</p>
                     <p className="flex items-center gap-1">
-                        Made with <Heart size={14} className="text-red-500 fill-red-500" /> by DSofts Team
+                        Made with <Heart size={14} className="text-red-500 fill-red-500" /> by DSofts IT Services
                     </p>
                 </div>
             </div>

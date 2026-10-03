@@ -178,24 +178,30 @@ const Home = () => {
             {/* 3. Company Introduction & Statistics */}
             <section className="py-16 bg-white border-b border-slate-100">
                 <div className="container-custom">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                        <div className="p-4 border-r border-slate-100 last:border-0">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+                    >
+                        <motion.div whileHover={{ scale: 1.05 }} className="p-4 border-r border-slate-100 last:border-0 transition-transform">
                             <div className="text-3xl md:text-5xl font-black font-heading text-slate-900 mb-1">50+</div>
                             <div className="text-xs md:text-sm font-semibold text-slate-500 uppercase tracking-wider">Projects Delivered</div>
-                        </div>
-                        <div className="p-4 border-r border-slate-100 last:border-0">
+                        </motion.div>
+                        <motion.div whileHover={{ scale: 1.05 }} className="p-4 border-r border-slate-100 last:border-0 transition-transform">
                             <div className="text-3xl md:text-5xl font-black font-heading text-primary-600 mb-1">99%</div>
                             <div className="text-xs md:text-sm font-semibold text-slate-500 uppercase tracking-wider">Client Satisfaction</div>
-                        </div>
-                        <div className="p-4 border-r border-slate-100 last:border-0">
+                        </motion.div>
+                        <motion.div whileHover={{ scale: 1.05 }} className="p-4 border-r border-slate-100 last:border-0 transition-transform">
                             <div className="text-3xl md:text-5xl font-black font-heading text-slate-900 mb-1">15+</div>
                             <div className="text-xs md:text-sm font-semibold text-slate-500 uppercase tracking-wider">Expert Engineers</div>
-                        </div>
-                        <div className="p-4">
+                        </motion.div>
+                        <motion.div whileHover={{ scale: 1.05 }} className="p-4 transition-transform">
                             <div className="text-3xl md:text-5xl font-black font-heading text-primary-600 mb-1">5+</div>
                             <div className="text-xs md:text-sm font-semibold text-slate-500 uppercase tracking-wider">Years Experience</div>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
                 </div>
             </section>
 

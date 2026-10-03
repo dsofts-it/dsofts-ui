@@ -61,7 +61,7 @@ const AdminLogin = () => {
                                 required
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                placeholder="rohan@dsofts.in"
+                                placeholder="admin@dsofts.in"
                                 className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 pl-10 text-sm text-white focus:border-primary-500 focus:outline-none transition-colors"
                             />
                             <Mail size={16} className="absolute left-3.5 top-3.5 text-slate-500" />
@@ -91,12 +91,6 @@ const AdminLogin = () => {
                         {loading ? 'Authenticating...' : 'Sign In to Admin Panel'}
                     </button>
                 </form>
-
-                <div className="pt-4 border-t border-slate-800 text-center">
-                    <p className="text-[11px] text-slate-500">
-                        Initial Seed Admin: <span className="text-slate-400 font-mono">rohan@dsofts.in</span> / <span className="text-slate-400 font-mono">Rohan123</span>
-                    </p>
-                </div>
             </motion.div>
         </div>
     );

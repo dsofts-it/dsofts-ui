@@ -11,8 +11,8 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
                     {/* Brand Column */}
                     <div className="lg:col-span-2 space-y-6">
-                        <Link to="/" className="inline-block">
-                            <DSoftsLogo className="h-14 sm:h-16 md:h-20 lg:h-22 w-auto max-h-24" isDarkBg={true} />
+                        <Link to="/" className="inline-block py-1">
+                            <DSoftsLogo className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-auto max-h-32 scale-110 origin-left object-contain" isDarkBg={true} />
                         </Link>
                         <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
                             DSofts IT Services is a modern software engineering and technology consulting company. Building high-performance web platforms, cross-platform mobile applications, and enterprise custom software.

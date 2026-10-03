@@ -12,22 +12,19 @@ const Careers = () => {
     const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
 
     // Form state
-    const [formData, setFormData] = useState({
+    const initialFormState = {
         fullName: '',
         email: '',
         phone: '',
         location: '',
         qualification: '',
-        experienceYears: '',
-        currentSalary: '',
-        expectedSalary: '',
-        noticePeriod: '',
+        experienceYears: 'Fresher (0 Years)',
+        noticePeriod: 'NA',
         skills: '',
-        linkedinUrl: '',
-        githubUrl: '',
-        portfolioUrl: '',
-        coverLetter: ''
-    });
+        portfolioUrl: ''
+    };
+
+    const [formData, setFormData] = useState(initialFormState);
 
     const [resumeFile, setResumeFile] = useState(null);
     const [submitting, setSubmitting] = useState(false);
@@ -107,22 +104,7 @@ const Careers = () => {
             setSuccessMsg(res.data?.message || 'Application submitted successfully!');
             
             // Reset form
-            setFormData({
-                fullName: '',
-                email: '',
-                phone: '',
-                location: '',
-                qualification: '',
-                experienceYears: '',
-                currentSalary: '',
-                expectedSalary: '',
-                noticePeriod: '',
-                skills: '',
-                linkedinUrl: '',
-                githubUrl: '',
-                portfolioUrl: '',
-                coverLetter: ''
-            });
+            setFormData(initialFormState);
             setResumeFile(null);
         } catch (err) {
             setErrorMsg(err.response?.data?.message || 'Failed to submit application. Please try again.');
@@ -354,57 +336,63 @@ const Careers = () => {
                                             </div>
 
                                             <div>
-                                                <label className="block text-xs font-semibold text-slate-700 mb-1">Total Experience</label>
-                                                <input
-                                                    type="text"
+                                                <label className="block text-xs font-semibold text-slate-700 mb-1">Total Experience *</label>
+                                                <select
                                                     value={formData.experienceYears}
-                                                    onChange={(e) => setFormData({ ...formData, experienceYears: e.target.value })}
-                                                    placeholder="e.g. 3 Years"
+                                                    onChange={(e) => {
+                                                        const exp = e.target.value;
+                                                        setFormData(prev => ({
+                                                            ...prev,
+                                                            experienceYears: exp,
+                                                            noticePeriod: exp.includes('Fresher') ? 'NA' : (prev.noticePeriod === 'NA' ? '30 Days' : prev.noticePeriod)
+                                                        }));
+                                                    }}
                                                     className="input-field text-sm"
-                                                />
+                                                >
+                                                    <option value="Fresher (0 Years)">Fresher (0 Years)</option>
+                                                    <option value="1 Year">1 Year</option>
+                                                    <option value="2 Years">2 Years</option>
+                                                    <option value="3+ Years">3+ Years</option>
+                                                    <option value="5+ Years">5+ Years</option>
+                                                </select>
                                             </div>
 
                                             <div>
-                                                <label className="block text-xs font-semibold text-slate-700 mb-1">Notice Period</label>
-                                                <input
-                                                    type="text"
+                                                <label className="block text-xs font-semibold text-slate-700 mb-1">Notice Period *</label>
+                                                <select
                                                     value={formData.noticePeriod}
                                                     onChange={(e) => setFormData({ ...formData, noticePeriod: e.target.value })}
-                                                    placeholder="e.g. Immediate / 30 Days"
                                                     className="input-field text-sm"
-                                                />
+                                                >
+                                                    <option value="NA">NA (Fresher / Not Applicable)</option>
+                                                    <option value="Immediate">Immediate</option>
+                                                    <option value="15 Days">15 Days</option>
+                                                    <option value="30 Days">30 Days</option>
+                                                    <option value="60 Days">60 Days</option>
+                                                    <option value="90 Days">90 Days</option>
+                                                </select>
                                             </div>
 
-                                            <div>
-                                                <label className="block text-xs font-semibold text-slate-700 mb-1">LinkedIn Profile URL</label>
+                                            <div className="md:col-span-2">
+                                                <label className="block text-xs font-semibold text-slate-700 mb-1">Portfolio / Website Link (Optional)</label>
                                                 <input
                                                     type="url"
-                                                    value={formData.linkedinUrl}
-                                                    onChange={(e) => setFormData({ ...formData, linkedinUrl: e.target.value })}
-                                                    placeholder="https://linkedin.com/in/username"
-                                                    className="input-field text-sm"
-                                                />
-                                            </div>
-
-                                            <div>
-                                                <label className="block text-xs font-semibold text-slate-700 mb-1">GitHub / Portfolio URL</label>
-                                                <input
-                                                    type="url"
-                                                    value={formData.githubUrl}
-                                                    onChange={(e) => setFormData({ ...formData, githubUrl: e.target.value })}
-                                                    placeholder="https://github.com/username"
+                                                    value={formData.portfolioUrl}
+                                                    onChange={(e) => setFormData({ ...formData, portfolioUrl: e.target.value })}
+                                                    placeholder="https://yourportfolio.com"
                                                     className="input-field text-sm"
                                                 />
                                             </div>
                                         </div>
 
                                         <div>
-                                            <label className="block text-xs font-semibold text-slate-700 mb-1">Key Skills & Technologies</label>
+                                            <label className="block text-xs font-semibold text-slate-700 mb-1">Key Skills & Technologies *</label>
                                             <input
                                                 type="text"
+                                                required
                                                 value={formData.skills}
                                                 onChange={(e) => setFormData({ ...formData, skills: e.target.value })}
-                                                placeholder="React, Node.js, Express, MongoDB, Tailwind CSS"
+                                                placeholder="React, Node.js, Express, MongoDB, Flutter, etc."
                                                 className="input-field text-sm"
                                             />
                                         </div>
@@ -430,17 +418,6 @@ const Careers = () => {
                                                     <p className="text-xs text-slate-500">Supports PDF, DOC, DOCX up to 5MB</p>
                                                 </label>
                                             </div>
-                                        </div>
-
-                                        <div>
-                                            <label className="block text-xs font-semibold text-slate-700 mb-1">Cover Letter / Note</label>
-                                            <textarea
-                                                rows="3"
-                                                value={formData.coverLetter}
-                                                onChange={(e) => setFormData({ ...formData, coverLetter: e.target.value })}
-                                                placeholder="Tell us briefly why you'd be a great fit for DSofts..."
-                                                className="input-field text-sm"
-                                            ></textarea>
                                         </div>
 
                                         <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">

@@ -1,51 +1,61 @@
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Heart } from 'lucide-react';
+import { Twitter, Linkedin, Facebook, Instagram, Mail, MapPin } from 'lucide-react';
+import DSoftsLogo from './common/DSoftsLogo';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="bg-slate-900 text-slate-300 pt-16 pb-8">
+        <footer className="bg-slate-950 text-slate-300 pt-16 pb-8 border-t border-slate-900">
             <div className="container-custom">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
                     {/* Brand Column */}
-                    <div className="space-y-6">
-                        <Link to="/" className="flex items-center gap-2 group">
-                            <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-secondary-600 rounded-xl flex items-center justify-center text-white font-bold text-xl">
-                                D
-                            </div>
-                            <span className="font-heading font-bold text-2xl tracking-tight text-white">
-                                DSofts<span className="text-primary-500">.</span>
-                            </span>
+                    <div className="lg:col-span-2 space-y-6">
+                        <Link to="/" className="inline-block">
+                            <DSoftsLogo className="h-12 md:h-14 w-auto" isDarkBg={true} />
                         </Link>
-                        <p className="text-slate-400 leading-relaxed">
-                            Crafting digital experiences that transform businesses. We build modern, scalable, and beautiful web solutions.
+                        <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
+                            DSofts IT Services is a modern software engineering and technology consulting company. Building high-performance web platforms, cross-platform mobile applications, and enterprise custom software.
                         </p>
-                        <div className="flex gap-4">
-                            {[Facebook, Twitter, Instagram, Linkedin].map((Icon, index) => (
+                        <div className="flex gap-3">
+                            {[
+                                { icon: Instagram, href: 'https://instagram.com/dsofts.in', label: 'Instagram' },
+                                { icon: Linkedin, href: 'https://www.linkedin.com/company/dsofts-it-services', label: 'LinkedIn' },
+                                { icon: Facebook, href: 'https://facebook.com/dsoftsitservices', label: 'Facebook' },
+                                { icon: Twitter, href: 'https://x.com/dsoftsOfficial', label: 'X (Twitter)' },
+                            ].map(({ icon: Icon, href, label }, index) => (
                                 <a
                                     key={index}
-                                    href="#"
-                                    className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary-600 hover:text-white transition-all duration-300 hover:-translate-y-1"
+                                    href={href}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label={label}
+                                    className="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-primary-600 hover:border-primary-500 transition-all duration-200"
                                 >
-                                    <Icon size={18} />
+                                    <Icon size={16} />
                                 </a>
                             ))}
                         </div>
                     </div>
 
-                    {/* Quick Links */}
+                    {/* Navigation */}
                     <div>
-                        <h3 className="text-white font-heading font-bold text-lg mb-6">Quick Links</h3>
-                        <ul className="space-y-4">
-                            {['Home', 'About Us', 'Services', 'Portfolio', 'Contact'].map((item) => (
-                                <li key={item}>
-                                    <Link
-                                        to={`/${item.toLowerCase().replace(' ', '-')}`}
-                                        className="hover:text-primary-400 transition-colors flex items-center gap-2 group"
-                                    >
-                                        <span className="w-1.5 h-1.5 rounded-full bg-primary-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                                        {item}
+                        <h3 className="text-white font-heading font-bold text-sm uppercase tracking-wider mb-5">Company</h3>
+                        <ul className="space-y-3 text-sm">
+                            {[
+                                { label: 'Home', path: '/' },
+                                { label: 'About Us', path: '/about' },
+                                { label: 'Services', path: '/services' },
+                                { label: 'Solutions', path: '/solutions' },
+                                { label: 'Portfolio', path: '/portfolio' },
+                                { label: 'Case Studies', path: '/case-studies' },
+                                { label: 'Careers Portal', path: '/careers' },
+                                { label: 'Blog & Insights', path: '/blog' },
+                                { label: 'Contact Us', path: '/contact' },
+                            ].map((item) => (
+                                <li key={item.label}>
+                                    <Link to={item.path} className="text-slate-400 hover:text-primary-400 transition-colors">
+                                        {item.label}
                                     </Link>
                                 </li>
                             ))}
@@ -54,15 +64,18 @@ const Footer = () => {
 
                     {/* Services */}
                     <div>
-                        <h3 className="text-white font-heading font-bold text-lg mb-6">Services</h3>
-                        <ul className="space-y-4">
-                            {['Web Development', 'Mobile Apps', 'UI/UX Design', 'Cloud Solutions', 'Consulting'].map((item) => (
+                        <h3 className="text-white font-heading font-bold text-sm uppercase tracking-wider mb-5">Services</h3>
+                        <ul className="space-y-3 text-sm">
+                            {[
+                                'Web Development',
+                                'Mobile App Development',
+                                'Full Stack Software',
+                                'Custom CRM & SaaS',
+                                'AI Solutions',
+                                'Cloud & Deployment',
+                            ].map((item) => (
                                 <li key={item}>
-                                    <Link
-                                        to="/services"
-                                        className="hover:text-primary-400 transition-colors flex items-center gap-2 group"
-                                    >
-                                        <span className="w-1.5 h-1.5 rounded-full bg-primary-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                                    <Link to="/services" className="text-slate-400 hover:text-primary-400 transition-colors">
                                         {item}
                                     </Link>
                                 </li>
@@ -72,32 +85,26 @@ const Footer = () => {
 
                     {/* Contact Info */}
                     <div>
-                        <h3 className="text-white font-heading font-bold text-lg mb-6">Contact Us</h3>
-                        <ul className="space-y-4">
+                        <h3 className="text-white font-heading font-bold text-sm uppercase tracking-wider mb-5">Contact Us</h3>
+                        <ul className="space-y-3 text-sm text-slate-400">
                             <li className="flex items-start gap-3">
-                                <MapPin className="text-primary-500 mt-1 shrink-0" size={18} />
-                                <span>Pune, Maharashtra</span>
+                                <MapPin className="text-primary-500 mt-1 shrink-0" size={16} />
+                                <span>Pune, Maharashtra, India</span>
                             </li>
                             <li className="flex items-center gap-3">
-                                <Phone className="text-primary-500 shrink-0" size={18} />
-                                <span className="flex flex-col leading-tight">
-                                    <span>+91 8446031622</span>
-                                    <span>+91 9226805459</span>
-                                </span>
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <Mail className="text-primary-500 shrink-0" size={18} />
-                                <span>rohan@dsofts.in</span>
+                                <Mail className="text-primary-500 shrink-0" size={16} />
+                                <a href="mailto:dsofts.itservices@gmail.com" className="hover:text-white transition-colors">dsofts.itservices@gmail.com</a>
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
-                    <p>&copy; {currentYear}DSofts IT Services. All rights reserved.</p>
-                    <p className="flex items-center gap-1">
-                        Made with <Heart size={14} className="text-red-500 fill-red-500" /> by DSofts IT Services
-                    </p>
+                <div className="border-t border-slate-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                    <p>&copy; {currentYear} DSofts IT Services. All rights reserved.</p>
+                    <div className="flex gap-6">
+                        <Link to="/privacy-policy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
+                        <Link to="/terms-and-conditions" className="hover:text-slate-300 transition-colors">Terms & Conditions</Link>
+                    </div>
                 </div>
             </div>
         </footer>

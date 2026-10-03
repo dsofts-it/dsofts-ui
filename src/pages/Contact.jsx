@@ -16,7 +16,7 @@ const Contact = () => {
         phone: '',
         company: '',
         service: preselectedService || 'Web Development',
-        budget: '₹25,000 - ₹50,000',
+        budget: '',
         timeline: '1 - 2 Months',
         message: ''
     });
@@ -37,8 +37,14 @@ const Contact = () => {
         setError('');
         setSuccess(false);
 
+        const payload = {
+            ...formData,
+            company: formData.company.trim() ? formData.company.trim() : 'NA',
+            budget: formData.budget.trim() ? formData.budget.trim() : 'NA / Flexible'
+        };
+
         try {
-            await publicApi.sendContactMessage(formData);
+            await publicApi.sendContactMessage(payload);
             setSuccess(true);
             setFormData({
                 name: '',
@@ -46,7 +52,7 @@ const Contact = () => {
                 phone: '',
                 company: '',
                 service: 'Web Development',
-                budget: '₹25,000 - ₹50,000',
+                budget: '',
                 timeline: '1 - 2 Months',
                 message: ''
             });
@@ -207,7 +213,7 @@ const Contact = () => {
                                             type="text"
                                             value={formData.company}
                                             onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                                            placeholder="Acme Tech Inc."
+                                            placeholder="Company Name (or NA if individual)"
                                             className="input-field text-sm"
                                         />
                                     </div>
@@ -230,19 +236,14 @@ const Contact = () => {
                                     </div>
 
                                     <div>
-                                        <label className="block text-xs font-semibold text-slate-700 mb-1">Estimated Budget (in ₹ Rupees)</label>
-                                        <select
+                                        <label className="block text-xs font-semibold text-slate-700 mb-1">Your Project Budget (Manual Input)</label>
+                                        <input
+                                            type="text"
                                             value={formData.budget}
                                             onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                                            placeholder="e.g. ₹50,000 or $1,000"
                                             className="input-field text-sm"
-                                        >
-                                            <option value="Under ₹25,000">Under ₹25,000</option>
-                                            <option value="₹25,000 - ₹50,000">₹25,000 - ₹50,000</option>
-                                            <option value="₹50,000 - ₹1,50,000">₹50,000 - ₹1,50,000</option>
-                                            <option value="₹1,50,000 - ₹3,00,000">₹1,50,000 - ₹3,00,000</option>
-                                            <option value="₹3,00,000 - ₹5,00,000">₹3,00,000 - ₹5,00,000</option>
-                                            <option value="₹5,00,000+ (Enterprise Custom)">₹5,00,000+ (Enterprise Custom)</option>
-                                        </select>
+                                        />
                                     </div>
                                 </div>
 

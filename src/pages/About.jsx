@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 
 const About = () => {
     const stats = [
-        { label: 'Projects Delivered', value: '50+' },
-        { label: 'Client Satisfaction', value: '99%' },
-        { label: 'Expert Engineers', value: '15+' },
-        { label: 'Years Experience', value: '5+' },
+        { label: 'Projects Delivered', value: '30+' },
+        { label: 'Client Satisfaction', value: '95%' },
+        { label: 'Years Experience', value: '3+' },
+        { label: 'Dedicated Team', value: 'Expert Team' },
     ];
 
     const values = [

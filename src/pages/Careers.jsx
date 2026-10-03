@@ -374,12 +374,12 @@ const Careers = () => {
                                             </div>
 
                                             <div className="md:col-span-2">
-                                                <label className="block text-xs font-semibold text-slate-700 mb-1">Portfolio / Website Link (Optional)</label>
+                                                <label className="block text-xs font-semibold text-slate-700 mb-1">Github Url</label>
                                                 <input
                                                     type="url"
                                                     value={formData.portfolioUrl}
                                                     onChange={(e) => setFormData({ ...formData, portfolioUrl: e.target.value })}
-                                                    placeholder="https://yourportfolio.com"
+                                                    placeholder="https://githun.com"
                                                     className="input-field text-sm"
                                                 />
                                             </div>

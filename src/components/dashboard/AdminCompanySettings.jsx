@@ -7,9 +7,9 @@ const AdminCompanySettings = () => {
         companyName: 'DSofts IT Services',
         tagline: 'Building Digital Products That Move Businesses Forward.',
         heroDescription: 'Web applications, mobile apps, custom software and digital solutions built for growing businesses.',
-        primaryEmail: 'rohan@dsofts.in',
-        careersEmail: 'careers@dsofts.in',
-        phone: '+91 8446031622',
+        primaryEmail: 'dsofts.itservices@gmail.com',
+        careersEmail: 'dsofts.itservices@gmail.com',
+        phone: '',
         address: 'Pune, Maharashtra, India',
         mission: 'To empower ambitious businesses with scalable, secure, and intuitive digital solutions.',
         vision: 'To become a trusted global product development partner known for technical excellence.'

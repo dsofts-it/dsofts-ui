@@ -21,6 +21,7 @@ import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import Admin from './pages/Admin';
 import AdminLogin from './pages/AdminLogin';
+import ScrollToTop from './components/common/ScrollToTop';
 import { AuthProvider } from './context/AuthContext';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
 
   return (
     <AuthProvider>
+      <ScrollToTop />
       <Layout>
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>

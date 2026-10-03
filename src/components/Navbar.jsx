@@ -50,14 +50,14 @@ const Navbar = () => {
                 </Link>
 
                 {/* Desktop Navigation Links */}
-                <nav className="hidden lg:flex items-center gap-5 xl:gap-7">
+                <nav className="hidden xl:flex items-center gap-3.5 2xl:gap-6">
                     {navLinks.map((link) => {
                         const isActive = location.pathname === link.path;
                         return (
                             <Link
                                 key={link.name}
                                 to={link.path}
-                                className={`text-xs md:text-sm font-semibold transition-all duration-200 relative py-1 ${
+                                className={`text-xs 2xl:text-sm font-semibold transition-all duration-200 relative py-1 whitespace-nowrap ${
                                     isActive
                                         ? 'text-primary-600 font-bold'
                                         : 'text-slate-700 hover:text-primary-600'
@@ -77,14 +77,14 @@ const Navbar = () => {
                 </nav>
 
                 {/* CTA & User Controls */}
-                <div className="hidden lg:flex items-center gap-4">
+                <div className="hidden xl:flex items-center gap-3">
                     {isAuthenticated ? (
                         <div className="relative group">
-                            <button className="flex items-center gap-2 text-xs md:text-sm font-semibold text-slate-700 hover:text-primary-600 transition-colors py-1.5 px-3 rounded-lg hover:bg-slate-50">
-                                <div className="w-7 h-7 bg-primary-100 text-primary-700 rounded-full flex items-center justify-center font-bold text-xs border border-primary-200">
+                            <button className="flex items-center gap-2 text-xs font-semibold text-slate-700 hover:text-primary-600 transition-colors py-1.5 px-2.5 rounded-lg hover:bg-slate-50 whitespace-nowrap">
+                                <div className="w-7 h-7 bg-primary-100 text-primary-700 rounded-full flex items-center justify-center font-bold text-xs border border-primary-200 shrink-0">
                                     {user?.name?.charAt(0).toUpperCase() || 'U'}
                                 </div>
-                                <span>{user?.name?.split(' ')[0]}</span>
+                                <span className="max-w-[100px] truncate">{user?.name?.split(' ')[0]}</span>
                             </button>
 
                             <div className="absolute right-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50">
@@ -120,7 +120,7 @@ const Navbar = () => {
 
                     <Link
                         to="/contact"
-                        className="btn btn-primary py-2.5 px-5 text-xs md:text-sm font-bold shadow-sm hover:shadow-md gap-2 rounded-full"
+                        className="btn btn-primary py-2 px-4 text-xs font-bold shadow-sm hover:shadow-md gap-1.5 rounded-full whitespace-nowrap shrink-0"
                     >
                         <span>Start a Project</span>
                         <ArrowRight size={14} />
@@ -129,7 +129,7 @@ const Navbar = () => {
 
                 {/* Mobile Menu Button */}
                 <button
-                    className="lg:hidden p-2 text-slate-700 hover:text-primary-600 focus:outline-none rounded-lg hover:bg-slate-100 transition-colors"
+                    className="xl:hidden p-2 text-slate-700 hover:text-primary-600 focus:outline-none rounded-lg hover:bg-slate-100 transition-colors"
                     onClick={() => setIsOpen(!isOpen)}
                     aria-label="Toggle Navigation Menu"
                 >
@@ -145,7 +145,7 @@ const Navbar = () => {
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.25 }}
-                        className="lg:hidden bg-white border-b border-gray-200 shadow-xl overflow-hidden"
+                        className="xl:hidden bg-white border-b border-gray-200 shadow-xl overflow-hidden"
                     >
                         <div className="container-custom py-6 flex flex-col gap-3">
                             {navLinks.map((link) => (

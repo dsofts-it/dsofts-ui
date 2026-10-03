@@ -19,6 +19,11 @@ const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('overview');
     const { logout } = useAuth();
 
+    const handleTabClick = (tabId) => {
+        setActiveTab(tabId);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
     const tabs = [
         { id: 'overview', label: 'Overview', icon: LayoutDashboard },
         { id: 'jobs', label: 'Careers & Jobs', icon: Briefcase },
@@ -47,7 +52,7 @@ const AdminDashboard = () => {
                     return (
                         <button
                             key={tab.id}
-                            onClick={() => setActiveTab(tab.id)}
+                            onClick={() => handleTabClick(tab.id)}
                             className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all text-left ${
                                 isActive
                                     ? 'bg-primary-600 text-white shadow-sm shadow-primary-600/20'

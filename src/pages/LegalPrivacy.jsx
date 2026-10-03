@@ -37,7 +37,7 @@ const LegalPrivacy = () => {
 
                     <h2 className="text-xl font-bold text-slate-900 font-heading mt-6">4. Contact Information</h2>
                     <p>
-                        If you have any questions regarding this Privacy Policy or wish to request data removal, please contact us at: <strong>privacy@dsofts.in</strong> or <strong>contact@dsofts.in</strong>.
+                        If you have any questions regarding this Privacy Policy or wish to request data removal, please contact us at: <strong>dsofts.itservices@gmail.com</strong>.
                     </p>
                 </div>
 

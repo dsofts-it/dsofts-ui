@@ -193,7 +193,7 @@ const Careers = () => {
                             <Briefcase className="w-12 h-12 text-slate-400 mx-auto mb-4" />
                             <h3 className="text-xl font-bold text-slate-800 mb-2 font-heading">No Active Openings Found</h3>
                             <p className="text-slate-600 text-sm max-w-md mx-auto">
-                                There are currently no openings listed under this department. Check back soon or send your resume to careers@dsofts.in!
+                                There are currently no openings listed under this department. Check back soon or send your resume to dsofts.itservices@gmail.com!
                             </p>
                         </div>
                     ) : (

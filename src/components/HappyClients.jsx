@@ -53,12 +53,27 @@ const HappyClients = () => {
     useEffect(() => {
         const fetchClients = async () => {
             try {
-                const response = await publicApi.getProjects();
-                // Filter projects that have a clientName
-                const projectsWithClients = response.data.filter(
+                // Try testimonials API endpoint
+                const testimonialsRes = await publicApi.getTestimonials();
+                if (testimonialsRes.data && testimonialsRes.data.length > 0) {
+                    const formattedTestimonials = testimonialsRes.data.map((t) => ({
+                        _id: t._id,
+                        clientName: t.clientName,
+                        title: t.company ? (t.role ? `${t.company} – ${t.role}` : t.company) : (t.role || 'Valued Client'),
+                        clientRating: t.rating || 5,
+                        shortDescription: t.content,
+                        slug: t._id
+                    }));
+                    setClients(formattedTestimonials);
+                    return;
+                }
+
+                // Fallback to projects with client names
+                const projectsRes = await publicApi.getProjects();
+                const projectsWithClients = (projectsRes.data || []).filter(
                     (project) => project.clientName && project.clientName.trim() !== ''
                 );
-                
+
                 if (projectsWithClients.length > 0) {
                     setClients(projectsWithClients);
                 } else {

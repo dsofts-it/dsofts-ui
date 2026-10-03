@@ -5,6 +5,121 @@ import { Link } from 'react-router-dom';
 import { publicApi } from '../api/endpoints';
 import SEO from '../components/common/SEO';
 
+const FALLBACK_SERVICES = [
+    {
+        _id: 's-1',
+        title: 'Custom Web & Software Development',
+        description: 'Tailored, high-performance web applications engineered with modern technologies (React, Node.js, Next.js) tailored for all business fields.',
+        startingPrice: 25000,
+        features: [
+            'Responsive & Mobile-First UI/UX',
+            'RESTful & GraphQL API Integration',
+            'Custom Database Schemas & Optimization',
+            'Secure Auth & Role-Based Access Control',
+            'Cloud Deployment (AWS/Azure/Render)',
+            'High Performance & SEO Optimization'
+        ],
+        isPopular: true
+    },
+    {
+        _id: 's-2',
+        title: 'Mobile App Development (iOS & Android)',
+        description: 'Cross-platform native-feel mobile applications for iOS and Android using Flutter and React Native, tailored for Healthcare, Education, MLM, Finance, and Enterprise.',
+        startingPrice: 35000,
+        features: [
+            'iOS & Android Cross-Platform Apps',
+            'Flutter & React Native Architecture',
+            'Real-time Push Notifications & Biometrics',
+            'In-App Payment Gateway Integrations',
+            'App Store & Google Play Store Publishing'
+        ],
+        isPopular: true
+    },
+    {
+        _id: 's-3',
+        title: 'Healthcare & Telemedicine Systems',
+        description: 'HIPAA-compliant healthcare platforms, electronic health records (EHR), patient portals, appointment scheduling, and telemedicine video consultation apps.',
+        startingPrice: 45000,
+        features: [
+            'Patient Registration & EHR Records',
+            'Doctor Appointment & Video Consultations',
+            'Lab & Prescription Management',
+            'HIPAA & Health Data Privacy Standards',
+            'Billing & Medical Insurance Integration'
+        ],
+        isPopular: true
+    },
+    {
+        _id: 's-4',
+        title: 'EdTech & Education Management Systems',
+        description: 'Comprehensive Learning Management Systems (LMS), school management platforms, student portals, online examination systems, and interactive educational apps.',
+        startingPrice: 30000,
+        features: [
+            'Student & Teacher Management Portals',
+            'Live Online Classes & Video Streaming',
+            'Course Catalog & Online Assessments',
+            'Fee Collection & Attendance Telemetry',
+            'Parent Communication Mobile Apps'
+        ],
+        isPopular: false
+    },
+    {
+        _id: 's-5',
+        title: 'MLM Systems & Network Marketing Software',
+        description: 'Custom Multi-Level Marketing (MLM) software supporting Binary, Matrix, Generation, and Unilevel plans with automated payout calculators and genealogy trees.',
+        startingPrice: 38000,
+        features: [
+            'Binary, Matrix, Unilevel & Custom MLM Plans',
+            'Real-time Interactive Genealogy Trees',
+            'Automated Payout & Commission Engine',
+            'E-Wallet & Crypto/UPI Payment Gateway',
+            'Member Backoffice & Admin Control Panel'
+        ],
+        isPopular: true
+    },
+    {
+        _id: 's-6',
+        title: 'FinTech & Finance Management Solutions',
+        description: 'Secure financial software, payment gateway aggregators, micro-finance tracking, accounting dashboards, and banking mobile applications.',
+        startingPrice: 42000,
+        features: [
+            'Multi-Currency Payment Gateways',
+            'Biometric Security & Encryption',
+            'Automated Ledger & Invoicing Systems',
+            'Loan Management & Interest Calculators',
+            'Real-time Financial Telemetry Dashboards'
+        ],
+        isPopular: true
+    },
+    {
+        _id: 's-7',
+        title: 'Enterprise CRM & ERP Systems',
+        description: 'Fully customized CRM and ERP systems designed around your unique business workflows, lead tracking, inventory management, and automated sales pipelines.',
+        startingPrice: 32000,
+        features: [
+            'Sales Pipeline & Lead Tracking',
+            'Automated Business Workflow Engines',
+            'Inventory & Supply Chain Telemetry',
+            'Granular Role-based Employee Access',
+            'Custom Analytics & Exportable Reports'
+        ],
+        isPopular: false
+    },
+    {
+        _id: 's-8',
+        title: 'AI & Smart Automation Solutions',
+        description: 'Custom AI integration, intelligent chatbots, predictive analytics, process automation, and machine learning models for growing businesses.',
+        startingPrice: 40000,
+        features: [
+            'AI Customer Support Chatbots',
+            'Automated Document Processing',
+            'Predictive Business Analytics',
+            'Custom LLM & API Integrations'
+        ],
+        isPopular: false
+    }
+];
+
 const Services = () => {
     const [services, setServices] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -13,9 +128,14 @@ const Services = () => {
         const fetchServices = async () => {
             try {
                 const response = await publicApi.getServices();
-                setServices(response.data || []);
+                if (response.data && response.data.length > 0) {
+                    setServices(response.data);
+                } else {
+                    setServices(FALLBACK_SERVICES);
+                }
             } catch (error) {
                 console.error('Failed to fetch services:', error);
+                setServices(FALLBACK_SERVICES);
             } finally {
                 setLoading(false);
             }

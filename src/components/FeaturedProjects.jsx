@@ -17,11 +17,22 @@ const FeaturedProjects = () => {
                 console.error('Failed to fetch projects:', error);
             } finally {
                 setLoading(false);
-            }
-        };
-
         fetchProjects();
     }, []);
+
+    const getCleanSlug = (p) => {
+        if (!p || !p.slug) return 'project';
+        let s = p.slug.trim();
+        if (s.startsWith('http://') || s.startsWith('https://')) {
+            try {
+                const urlObj = new URL(s);
+                s = urlObj.hostname.replace('www.', '') + urlObj.pathname;
+            } catch (e) {
+                s = s.replace(/https?:\/\//g, '');
+            }
+        }
+        return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'project';
+    };
 
     if (loading) {
         return (
@@ -100,7 +111,7 @@ const FeaturedProjects = () => {
                                 </p>
 
                                 <Link
-                                    to={`/portfolio/${project.slug}`}
+                                    to={`/portfolio/${getCleanSlug(project)}`}
                                     className="inline-flex items-center font-medium text-primary-600 hover:text-primary-700 transition-colors"
                                 >
                                     Read Case Study <ExternalLink size={16} className="ml-1" />

@@ -27,6 +27,20 @@ const Portfolio = () => {
         fetchProjects();
     }, []);
 
+    const getCleanSlug = (p) => {
+        if (!p || !p.slug) return 'project';
+        let s = p.slug.trim();
+        if (s.startsWith('http://') || s.startsWith('https://')) {
+            try {
+                const urlObj = new URL(s);
+                s = urlObj.hostname.replace('www.', '') + urlObj.pathname;
+            } catch (e) {
+                s = s.replace(/https?:\/\//g, '');
+            }
+        }
+        return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'project';
+    };
+
     const filteredProjects = activeCategory === 'All'
         ? projects
         : projects.filter((p) => {
@@ -110,7 +124,7 @@ const Portfolio = () => {
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                                             <Link
-                                                to={`/portfolio/${project.slug}`}
+                                                to={`/portfolio/${getCleanSlug(project)}`}
                                                 className="text-white text-xs font-bold flex items-center gap-2 hover:underline"
                                             >
                                                 <span>View Project Case Study</span>
@@ -143,7 +157,7 @@ const Portfolio = () => {
                                         Client: {project.clientName || 'Private Client'}
                                     </span>
                                     <Link
-                                        to={`/portfolio/${project.slug}`}
+                                        to={`/portfolio/${getCleanSlug(project)}`}
                                         className="inline-flex items-center text-xs font-bold text-primary-600 hover:text-primary-700 gap-1"
                                     >
                                         <span>Details</span>

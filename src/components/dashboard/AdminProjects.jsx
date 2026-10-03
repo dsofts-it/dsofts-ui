@@ -90,10 +90,53 @@ const AdminProjects = () => {
         }
     };
 
+    const sanitizeSlug = (val) => {
+        if (!val) return '';
+        let cleaned = val.trim();
+        if (cleaned.startsWith('http://') || cleaned.startsWith('https://')) {
+            try {
+                const urlObj = new URL(cleaned);
+                cleaned = urlObj.hostname.replace('www.', '') + urlObj.pathname;
+            } catch (e) {
+                cleaned = cleaned.replace(/https?:\/\//g, '');
+            }
+        }
+        return cleaned
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/(^-|-$)/g, '');
+    };
+
+    const handleTitleChange = (newTitle) => {
+        setFormData(prev => ({
+            ...prev,
+            title: newTitle,
+            slug: !currentProject ? sanitizeSlug(newTitle) : prev.slug
+        }));
+    };
+
+    const handleSlugChange = (rawSlug) => {
+        if (rawSlug.startsWith('http://') || rawSlug.startsWith('https://')) {
+            const clean = sanitizeSlug(rawSlug);
+            setFormData(prev => ({
+                ...prev,
+                slug: clean,
+                websiteUrl: prev.websiteUrl || rawSlug.trim()
+            }));
+        } else {
+            setFormData(prev => ({
+                ...prev,
+                slug: rawSlug
+            }));
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const finalSlug = sanitizeSlug(formData.slug || formData.title);
         const data = {
             ...formData,
+            slug: finalSlug,
             techStack: formData.techStack.split(',').map(t => t.trim()).filter(t => t),
             websiteUrl: formData.websiteUrl || undefined,
             clientRating: formData.clientRating ? Number(formData.clientRating) : undefined
@@ -231,7 +274,7 @@ const AdminProjects = () => {
                                         required
                                         className="input-field text-xs py-2"
                                         value={formData.title}
-                                        onChange={e => setFormData({ ...formData, title: e.target.value })}
+                                        onChange={e => handleTitleChange(e.target.value)}
                                         placeholder="e.g. HealthCare Telemedicine App"
                                     />
                                 </div>
@@ -242,7 +285,7 @@ const AdminProjects = () => {
                                         required
                                         className="input-field text-xs py-2"
                                         value={formData.slug}
-                                        onChange={e => setFormData({ ...formData, slug: e.target.value })}
+                                        onChange={e => handleSlugChange(e.target.value)}
                                         placeholder="e.g. healthcare-telemedicine-app"
                                     />
                                 </div>
@@ -330,38 +373,86 @@ const AdminProjects = () => {
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 <div>
-                                    <label className="block text-xs font-semibold text-slate-700 mb-1">Thumbnail Image URL</label>
+                                    <label className="block text-xs font-semibold text-slate-700 mb-1">Thumbnail Image (Local Upload / Cloudinary URL)</label>
                                     <div className="flex gap-1.5">
                                         <input
                                             type="text"
-                                            className="input-field text-xs py-1.5"
+                                            className="input-field text-xs py-1.5 font-mono text-[11px]"
                                             value={formData.thumbnailImageUrl}
                                             onChange={e => setFormData({ ...formData, thumbnailImageUrl: e.target.value })}
-                                            placeholder="https://..."
+                                            placeholder="https://res.cloudinary.com/..."
                                         />
-                                        <label className="btn btn-secondary px-2.5 py-1.5 text-xs cursor-pointer flex items-center justify-center shrink-0">
+                                        <label className="btn btn-secondary px-3 py-1.5 text-xs cursor-pointer flex items-center justify-center shrink-0 font-semibold gap-1">
                                             <FiUpload size={14} />
-                                            <input type="file" className="hidden" onChange={(e) => handleImageUpload(e, 'thumbnailImageUrl')} />
+                                            <span>Upload</span>
+                                            <input type="file" accept="image/*" className="hidden" onChange={(e) => handleImageUpload(e, 'thumbnailImageUrl')} />
                                         </label>
                                     </div>
+                                    {formData.thumbnailImageUrl && (
+                                        <div className="mt-2 relative rounded-xl overflow-hidden border border-slate-200 bg-slate-100 h-24 flex items-center justify-center group">
+                                            <img
+                                                src={formData.thumbnailImageUrl}
+                                                alt="Thumbnail Preview"
+                                                className="w-full h-full object-cover"
+                                                onError={(e) => { e.target.style.display = 'none'; }}
+                                            />
+                                            <span className="absolute bottom-1 left-2 bg-slate-900/80 text-white text-[10px] px-2 py-0.5 rounded font-mono">
+                                                Cloudinary Active
+                                            </span>
+                                            <button
+                                                type="button"
+                                                onClick={() => setFormData({ ...formData, thumbnailImageUrl: '' })}
+                                                className="absolute top-1 right-1 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity"
+                                            >
+                                                Remove
+                                            </button>
+                                        </div>
+                                    )}
                                 </div>
                                 <div>
-                                    <label className="block text-xs font-semibold text-slate-700 mb-1">Banner Image URL</label>
+                                    <label className="block text-xs font-semibold text-slate-700 mb-1">Banner Image (Local Upload / Cloudinary URL)</label>
                                     <div className="flex gap-1.5">
                                         <input
                                             type="text"
-                                            className="input-field text-xs py-1.5"
+                                            className="input-field text-xs py-1.5 font-mono text-[11px]"
                                             value={formData.bannerImageUrl}
                                             onChange={e => setFormData({ ...formData, bannerImageUrl: e.target.value })}
-                                            placeholder="https://..."
+                                            placeholder="https://res.cloudinary.com/..."
                                         />
-                                        <label className="btn btn-secondary px-2.5 py-1.5 text-xs cursor-pointer flex items-center justify-center shrink-0">
+                                        <label className="btn btn-secondary px-3 py-1.5 text-xs cursor-pointer flex items-center justify-center shrink-0 font-semibold gap-1">
                                             <FiUpload size={14} />
-                                            <input type="file" className="hidden" onChange={(e) => handleImageUpload(e, 'bannerImageUrl')} />
+                                            <span>Upload</span>
+                                            <input type="file" accept="image/*" className="hidden" onChange={(e) => handleImageUpload(e, 'bannerImageUrl')} />
                                         </label>
                                     </div>
+                                    {formData.bannerImageUrl && (
+                                        <div className="mt-2 relative rounded-xl overflow-hidden border border-slate-200 bg-slate-100 h-24 flex items-center justify-center group">
+                                            <img
+                                                src={formData.bannerImageUrl}
+                                                alt="Banner Preview"
+                                                className="w-full h-full object-cover"
+                                                onError={(e) => { e.target.style.display = 'none'; }}
+                                            />
+                                            <span className="absolute bottom-1 left-2 bg-slate-900/80 text-white text-[10px] px-2 py-0.5 rounded font-mono">
+                                                Cloudinary Active
+                                            </span>
+                                            <button
+                                                type="button"
+                                                onClick={() => setFormData({ ...formData, bannerImageUrl: '' })}
+                                                className="absolute top-1 right-1 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity"
+                                            >
+                                                Remove
+                                            </button>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
+
+                            {uploading && (
+                                <div className="p-2 bg-primary-50 text-primary-700 text-xs rounded-xl flex items-center justify-center gap-2 border border-primary-200 font-semibold animate-pulse">
+                                    <FiUpload className="animate-spin" /> Uploading image to Cloudinary...
+                                </div>
+                            )}
 
                             <div className="flex items-center gap-2 pt-1">
                                 <input

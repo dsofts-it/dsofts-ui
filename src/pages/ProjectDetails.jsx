@@ -11,11 +11,52 @@ const ProjectDetails = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const [imgSrc, setImgSrc] = useState(null);
+
     useEffect(() => {
         const fetchProject = async () => {
+            setLoading(true);
+            setError(null);
             try {
-                const response = await publicApi.getProjectBySlug(slug);
-                setProject(response.data);
+                // Try direct slug fetch
+                const cleanSlugParam = slug ? slug.replace(/https?:\/\//g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : '';
+                
+                try {
+                    const response = await publicApi.getProjectBySlug(slug);
+                    if (response.data) {
+                        setProject(response.data);
+                        setImgSrc(response.data.bannerImageUrl || response.data.thumbnailImageUrl || 'https://images.unsplash.com/photo-1557821552-17105176677c?w=1200&auto=format&fit=crop&q=80');
+                        return;
+                    }
+                } catch (e) {
+                    // Try clean slug if raw slug failed
+                    if (cleanSlugParam && cleanSlugParam !== slug) {
+                        try {
+                            const resClean = await publicApi.getProjectBySlug(cleanSlugParam);
+                            if (resClean.data) {
+                                setProject(resClean.data);
+                                setImgSrc(resClean.data.bannerImageUrl || resClean.data.thumbnailImageUrl || 'https://images.unsplash.com/photo-1557821552-17105176677c?w=1200&auto=format&fit=crop&q=80');
+                                return;
+                            }
+                        } catch (e2) {}
+                    }
+                }
+
+                // Fallback: fetch all projects and match
+                const allProjectsRes = await publicApi.getProjects();
+                const matched = (allProjectsRes.data || []).find(p => 
+                    p.slug === slug ||
+                    p.slug === cleanSlugParam ||
+                    p.title?.toLowerCase().includes(slug?.toLowerCase()) ||
+                    slug?.includes(p.slug)
+                );
+
+                if (matched) {
+                    setProject(matched);
+                    setImgSrc(matched.bannerImageUrl || matched.thumbnailImageUrl || 'https://images.unsplash.com/photo-1557821552-17105176677c?w=1200&auto=format&fit=crop&q=80');
+                } else {
+                    setError("The project you're looking for could not be found.");
+                }
             } catch (err) {
                 setError('Failed to load project details.');
                 console.error(err);
@@ -24,7 +65,9 @@ const ProjectDetails = () => {
             }
         };
 
-        fetchProject();
+        if (slug) {
+            fetchProject();
+        }
     }, [slug]);
 
     if (loading) {
@@ -37,10 +80,10 @@ const ProjectDetails = () => {
 
     if (error || !project) {
         return (
-            <div className="min-h-screen flex flex-col items-center justify-center text-center px-4">
-                <h2 className="text-2xl font-bold text-slate-800 mb-4 font-heading">Project Not Found</h2>
-                <p className="text-slate-600 mb-8">{error || "The project you're looking for doesn't exist."}</p>
-                <Link to="/portfolio" className="btn btn-primary">
+            <div className="min-h-screen flex flex-col items-center justify-center text-center px-4 bg-slate-900 text-white">
+                <h2 className="text-3xl font-bold mb-4 font-heading">Project Not Found</h2>
+                <p className="text-slate-400 mb-8 max-w-md">{error || "The project you're looking for doesn't exist."}</p>
+                <Link to="/portfolio" className="btn btn-primary py-3 px-6">
                     Back to Portfolio
                 </Link>
             </div>
@@ -55,10 +98,11 @@ const ProjectDetails = () => {
             />
 
             {/* Hero Section */}
-            <div className="relative h-[45vh] min-h-[350px] w-full overflow-hidden">
-                <div className="absolute inset-0 bg-slate-950/70 z-10" />
+            <div className="relative h-[45vh] min-h-[350px] w-full overflow-hidden bg-slate-950">
+                <div className="absolute inset-0 bg-slate-950/75 z-10" />
                 <img
-                    src={project.bannerImageUrl || project.thumbnailImageUrl || 'https://images.unsplash.com/photo-1557821552-17105176677c?w=1200&auto=format&fit=crop&q=80'}
+                    src={imgSrc || 'https://images.unsplash.com/photo-1557821552-17105176677c?w=1200&auto=format&fit=crop&q=80'}
+                    onError={() => setImgSrc('https://images.unsplash.com/photo-1557821552-17105176677c?w=1200&auto=format&fit=crop&q=80')}
                     alt={project.title}
                     className="absolute inset-0 w-full h-full object-cover"
                 />

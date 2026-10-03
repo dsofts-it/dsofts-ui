@@ -5,6 +5,42 @@ import { Calendar, User, Clock, ArrowRight, BookOpen, Search } from 'lucide-reac
 import { publicApi } from '../api/endpoints';
 import SEO from '../components/common/SEO';
 
+const FALLBACK_POSTS = [
+    {
+        _id: 'b-1',
+        title: 'Why React 19 and Vite are the Ideal Stack for Modern Web Development',
+        slug: 'react-19-vite-modern-web-development',
+        featuredImage: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&auto=format&fit=crop&q=80',
+        excerpt: 'Discover how React 19 Actions, Server Components, and Vite speed up build pipelines and transform frontend developer productivity.',
+        author: 'DSofts Engineering Team',
+        category: 'Web Development',
+        tags: ['React', 'Vite', 'Frontend', 'JavaScript'],
+        readTime: '4 min read'
+    },
+    {
+        _id: 'b-2',
+        title: 'Architecting Scalable Microservices with Node.js and Express',
+        slug: 'scalable-microservices-nodejs-express',
+        featuredImage: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&q=80',
+        excerpt: 'Best practices for organizing Express servers, database connection pooling, error middleware, and modular API design.',
+        author: 'Rohan Dede',
+        category: 'Backend & Cloud',
+        tags: ['Node.js', 'Express', 'Backend', 'API'],
+        readTime: '6 min read'
+    },
+    {
+        _id: 'b-3',
+        title: 'Building Modern Healthcare & Telemedicine Apps: Security & Compliance',
+        slug: 'building-modern-healthcare-telemedicine-apps',
+        featuredImage: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop&q=80',
+        excerpt: 'A comprehensive technical guide to building HIPAA-compliant electronic health records and real-time doctor consultation suites.',
+        author: 'DSofts HealthTech Team',
+        category: 'Healthcare Tech',
+        tags: ['Healthcare', 'Telemedicine', 'React', 'Security'],
+        readTime: '5 min read'
+    }
+];
+
 const Blog = () => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -14,9 +50,14 @@ const Blog = () => {
         const fetchPosts = async () => {
             try {
                 const res = await publicApi.getBlogPosts();
-                setPosts(res.data || []);
+                if (res.data && res.data.length > 0) {
+                    setPosts(res.data);
+                } else {
+                    setPosts(FALLBACK_POSTS);
+                }
             } catch (err) {
                 console.error('Error fetching blog posts:', err);
+                setPosts(FALLBACK_POSTS);
             } finally {
                 setLoading(false);
             }

@@ -12,7 +12,7 @@ const Footer = () => {
                     {/* Brand Column */}
                     <div className="lg:col-span-2 space-y-6">
                         <Link to="/" className="inline-block">
-                            <DSoftsLogo className="h-12 md:h-14 w-auto" isDarkBg={true} />
+                            <DSoftsLogo className="h-14 sm:h-16 md:h-20 lg:h-22 w-auto max-h-24" isDarkBg={true} />
                         </Link>
                         <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
                             DSofts IT Services is a modern software engineering and technology consulting company. Building high-performance web platforms, cross-platform mobile applications, and enterprise custom software.

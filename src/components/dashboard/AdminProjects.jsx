@@ -195,28 +195,41 @@ const AdminProjects = () => {
 
             {/* Modal Form */}
             {isEditing && (
-                <div className="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-                    <div className="bg-white rounded-2xl max-w-3xl w-full p-6 md:p-8 border border-slate-200 shadow-2xl relative my-8">
-                        <div className="flex justify-between items-center pb-4 border-b border-slate-100 mb-6">
+                <div
+                    className="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4"
+                    onClick={resetForm}
+                >
+                    <div
+                        className="bg-white rounded-2xl max-w-xl w-full p-5 md:p-6 border border-slate-200 shadow-2xl relative max-h-[88vh] flex flex-col"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        {/* Fixed Header */}
+                        <div className="flex justify-between items-center pb-3 border-b border-slate-100 flex-shrink-0">
                             <div>
-                                <h3 className="text-lg font-bold font-heading text-slate-900">
+                                <h3 className="text-base font-bold font-heading text-slate-900">
                                     {currentProject ? 'Edit Project Details' : 'Add New Portfolio Project'}
                                 </h3>
-                                <p className="text-xs text-slate-500">Specify title, slug, stack, client review, and images.</p>
+                                <p className="text-[11px] text-slate-500">Fill in details below. Click anywhere outside to close.</p>
                             </div>
-                            <button onClick={resetForm} className="p-2 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition-colors">
+                            <button
+                                type="button"
+                                onClick={resetForm}
+                                aria-label="Close popup"
+                                className="w-8 h-8 rounded-full text-slate-400 hover:text-red-600 hover:bg-red-50 flex items-center justify-center transition-colors"
+                            >
                                 <FiX size={20} />
                             </button>
                         </div>
 
-                        <form onSubmit={handleSubmit} className="space-y-5">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {/* Scrollable Body */}
+                        <form onSubmit={handleSubmit} className="space-y-4 overflow-y-auto pr-1 pt-4 flex-1">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 <div>
                                     <label className="block text-xs font-semibold text-slate-700 mb-1">Project Title *</label>
                                     <input
                                         type="text"
                                         required
-                                        className="input-field text-sm"
+                                        className="input-field text-xs py-2"
                                         value={formData.title}
                                         onChange={e => setFormData({ ...formData, title: e.target.value })}
                                         placeholder="e.g. HealthCare Telemedicine App"
@@ -227,7 +240,7 @@ const AdminProjects = () => {
                                     <input
                                         type="text"
                                         required
-                                        className="input-field text-sm"
+                                        className="input-field text-xs py-2"
                                         value={formData.slug}
                                         onChange={e => setFormData({ ...formData, slug: e.target.value })}
                                         placeholder="e.g. healthcare-telemedicine-app"
@@ -239,7 +252,7 @@ const AdminProjects = () => {
                                 <label className="block text-xs font-semibold text-slate-700 mb-1">Live URL (Optional)</label>
                                 <input
                                     type="url"
-                                    className="input-field text-sm"
+                                    className="input-field text-xs py-2"
                                     placeholder="https://example.com"
                                     value={formData.websiteUrl}
                                     onChange={e => setFormData({ ...formData, websiteUrl: e.target.value })}
@@ -251,10 +264,10 @@ const AdminProjects = () => {
                                 <textarea
                                     required
                                     rows="2"
-                                    className="input-field text-sm resize-none"
+                                    className="input-field text-xs py-2 resize-none"
                                     value={formData.shortDescription}
                                     onChange={e => setFormData({ ...formData, shortDescription: e.target.value })}
-                                    placeholder="Brief summary of what this project delivers..."
+                                    placeholder="Brief summary..."
                                 ></textarea>
                             </div>
 
@@ -262,11 +275,11 @@ const AdminProjects = () => {
                                 <label className="block text-xs font-semibold text-slate-700 mb-1">Full Description *</label>
                                 <textarea
                                     required
-                                    rows="4"
-                                    className="input-field text-sm font-sans"
+                                    rows="3"
+                                    className="input-field text-xs py-2 font-sans"
                                     value={formData.fullDescription}
                                     onChange={e => setFormData({ ...formData, fullDescription: e.target.value })}
-                                    placeholder="Detailed description of features, tech stack architecture, and outcomes..."
+                                    placeholder="Detailed features, architecture, and tech details..."
                                 ></textarea>
                             </div>
 
@@ -275,31 +288,31 @@ const AdminProjects = () => {
                                 <input
                                     type="text"
                                     required
-                                    className="input-field text-sm"
-                                    placeholder="React, Node.js, Flutter, MongoDB, Cloud"
+                                    className="input-field text-xs py-2"
+                                    placeholder="React, Node.js, Flutter, MongoDB"
                                     value={formData.techStack}
                                     onChange={e => setFormData({ ...formData, techStack: e.target.value })}
                                 />
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div className="grid grid-cols-3 gap-3">
                                 <div>
                                     <label className="block text-xs font-semibold text-slate-700 mb-1">Client Name</label>
                                     <input
                                         type="text"
-                                        className="input-field text-sm"
+                                        className="input-field text-xs py-2"
                                         value={formData.clientName}
                                         onChange={e => setFormData({ ...formData, clientName: e.target.value })}
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-xs font-semibold text-slate-700 mb-1">Rating (1 - 5)</label>
+                                    <label className="block text-xs font-semibold text-slate-700 mb-1">Rating (1-5)</label>
                                     <input
                                         type="number"
                                         min="1"
                                         max="5"
                                         step="0.1"
-                                        className="input-field text-sm"
+                                        className="input-field text-xs py-2"
                                         value={formData.clientRating}
                                         onChange={e => setFormData({ ...formData, clientRating: e.target.value })}
                                     />
@@ -308,49 +321,49 @@ const AdminProjects = () => {
                                     <label className="block text-xs font-semibold text-slate-700 mb-1">Completion Date</label>
                                     <input
                                         type="date"
-                                        className="input-field text-sm"
+                                        className="input-field text-xs py-2"
                                         value={formData.completedAt}
                                         onChange={e => setFormData({ ...formData, completedAt: e.target.value })}
                                     />
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 <div>
                                     <label className="block text-xs font-semibold text-slate-700 mb-1">Thumbnail Image URL</label>
-                                    <div className="flex gap-2">
+                                    <div className="flex gap-1.5">
                                         <input
                                             type="text"
-                                            className="input-field text-sm"
+                                            className="input-field text-xs py-1.5"
                                             value={formData.thumbnailImageUrl}
                                             onChange={e => setFormData({ ...formData, thumbnailImageUrl: e.target.value })}
                                             placeholder="https://..."
                                         />
-                                        <label className="btn btn-secondary px-3 cursor-pointer flex items-center justify-center">
-                                            <FiUpload />
+                                        <label className="btn btn-secondary px-2.5 py-1.5 text-xs cursor-pointer flex items-center justify-center shrink-0">
+                                            <FiUpload size={14} />
                                             <input type="file" className="hidden" onChange={(e) => handleImageUpload(e, 'thumbnailImageUrl')} />
                                         </label>
                                     </div>
                                 </div>
                                 <div>
                                     <label className="block text-xs font-semibold text-slate-700 mb-1">Banner Image URL</label>
-                                    <div className="flex gap-2">
+                                    <div className="flex gap-1.5">
                                         <input
                                             type="text"
-                                            className="input-field text-sm"
+                                            className="input-field text-xs py-1.5"
                                             value={formData.bannerImageUrl}
                                             onChange={e => setFormData({ ...formData, bannerImageUrl: e.target.value })}
                                             placeholder="https://..."
                                         />
-                                        <label className="btn btn-secondary px-3 cursor-pointer flex items-center justify-center">
-                                            <FiUpload />
+                                        <label className="btn btn-secondary px-2.5 py-1.5 text-xs cursor-pointer flex items-center justify-center shrink-0">
+                                            <FiUpload size={14} />
                                             <input type="file" className="hidden" onChange={(e) => handleImageUpload(e, 'bannerImageUrl')} />
                                         </label>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="flex items-center gap-2 pt-2">
+                            <div className="flex items-center gap-2 pt-1">
                                 <input
                                     type="checkbox"
                                     id="isFeatured"
@@ -361,11 +374,12 @@ const AdminProjects = () => {
                                 <label htmlFor="isFeatured" className="text-xs font-semibold text-slate-700">Mark as Featured Project on Homepage</label>
                             </div>
 
-                            <div className="pt-4 flex gap-3 border-t border-slate-100">
-                                <button type="submit" disabled={uploading} className="btn btn-primary flex-1 py-3 text-sm font-bold">
+                            {/* Footer Action Buttons */}
+                            <div className="pt-3 flex gap-2 border-t border-slate-100 flex-shrink-0">
+                                <button type="submit" disabled={uploading} className="btn btn-primary flex-1 py-2.5 text-xs font-bold">
                                     {uploading ? 'Uploading...' : (currentProject ? 'Save Changes' : 'Create Project')}
                                 </button>
-                                <button type="button" onClick={resetForm} className="btn btn-secondary flex-1 py-3 text-sm">
+                                <button type="button" onClick={resetForm} className="btn btn-secondary py-2.5 px-5 text-xs font-semibold">
                                     Cancel
                                 </button>
                             </div>

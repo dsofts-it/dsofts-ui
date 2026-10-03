@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Lock, Mail, ShieldCheck, AlertCircle } from 'lucide-react';
+import { Lock, Mail, ShieldCheck, AlertCircle, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
-import DSoftsLogo from '../components/common/SEO';
 
 const AdminLogin = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const { login } = useAuth();
@@ -72,14 +72,22 @@ const AdminLogin = () => {
                         <label className="block text-xs font-semibold text-slate-300 mb-1.5">Password</label>
                         <div className="relative">
                             <input
-                                type="password"
+                                type={showPassword ? 'text' : 'password'}
                                 required
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="••••••••"
-                                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 pl-10 text-sm text-white focus:border-primary-500 focus:outline-none transition-colors"
+                                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 pl-10 pr-12 text-sm text-white focus:border-primary-500 focus:outline-none transition-colors"
                             />
                             <Lock size={16} className="absolute left-3.5 top-3.5 text-slate-500" />
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="absolute right-3.5 top-3 text-slate-400 hover:text-white p-1 focus:outline-none transition-colors"
+                                title={showPassword ? "Hide password" : "Show password"}
+                            >
+                                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                            </button>
                         </div>
                     </div>
 

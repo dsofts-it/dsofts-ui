@@ -16,7 +16,7 @@ const Contact = () => {
         phone: '',
         company: '',
         service: preselectedService || 'Web Development',
-        budget: '$2,500 - $5,000',
+        budget: '₹25,000 - ₹50,000',
         timeline: '1 - 2 Months',
         message: ''
     });
@@ -46,7 +46,7 @@ const Contact = () => {
                 phone: '',
                 company: '',
                 service: 'Web Development',
-                budget: '$2,500 - $5,000',
+                budget: '₹25,000 - ₹50,000',
                 timeline: '1 - 2 Months',
                 message: ''
             });
@@ -230,16 +230,18 @@ const Contact = () => {
                                     </div>
 
                                     <div>
-                                        <label className="block text-xs font-semibold text-slate-700 mb-1">Estimated Budget</label>
+                                        <label className="block text-xs font-semibold text-slate-700 mb-1">Estimated Budget (in ₹ Rupees)</label>
                                         <select
                                             value={formData.budget}
                                             onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                                             className="input-field text-sm"
                                         >
-                                            <option value="Under $2,500">Under $2,500</option>
-                                            <option value="$2,500 - $5,000">$2,500 - $5,000</option>
-                                            <option value="$5,000 - $10,000">$5,000 - $10,000</option>
-                                            <option value="$10,000+">$10,000+</option>
+                                            <option value="Under ₹25,000">Under ₹25,000</option>
+                                            <option value="₹25,000 - ₹50,000">₹25,000 - ₹50,000</option>
+                                            <option value="₹50,000 - ₹1,50,000">₹50,000 - ₹1,50,000</option>
+                                            <option value="₹1,50,000 - ₹3,00,000">₹1,50,000 - ₹3,00,000</option>
+                                            <option value="₹3,00,000 - ₹5,00,000">₹3,00,000 - ₹5,00,000</option>
+                                            <option value="₹5,00,000+ (Enterprise Custom)">₹5,00,000+ (Enterprise Custom)</option>
                                         </select>
                                     </div>
                                 </div>

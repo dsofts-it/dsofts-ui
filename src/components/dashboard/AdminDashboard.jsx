@@ -23,7 +23,7 @@ const AdminDashboard = () => {
         { id: 'overview', label: 'Overview', icon: LayoutDashboard },
         { id: 'jobs', label: 'Careers & Jobs', icon: Briefcase },
         { id: 'applications', label: 'Applications', icon: Users },
-        { id: 'portfolio', label: 'Portfolio CRUD', icon: FolderCheck },
+        { id: 'portfolio', label: 'Portfolio & Projects', icon: FolderCheck },
         { id: 'casestudies', label: 'Case Studies', icon: BookOpen },
         { id: 'services', label: 'Services CMS', icon: Layers },
         { id: 'testimonials', label: 'Testimonials', icon: Star },

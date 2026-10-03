@@ -109,7 +109,7 @@ const Services = () => {
 
                                 <div className="flex items-center justify-between pt-6 border-t border-slate-100 mt-auto">
                                     <span className="text-xs font-semibold text-slate-500">
-                                        {service.startingPrice ? `Starting at $${service.startingPrice}` : 'Custom Pricing'}
+                                        {service.startingPrice ? `Starting at ₹${Number(service.startingPrice).toLocaleString('en-IN')}` : 'Custom Pricing'}
                                     </span>
                                     <Link
                                         to={`/contact?service=${encodeURIComponent(service.title)}`}

@@ -186,19 +186,19 @@ const Home = () => {
                         className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
                     >
                         <motion.div whileHover={{ scale: 1.05 }} className="p-4 border-r border-slate-100 last:border-0 transition-transform">
-                            <div className="text-3xl md:text-5xl font-black font-heading text-slate-900 mb-1">50+</div>
+                            <div className="text-3xl md:text-5xl font-black font-heading text-slate-900 mb-1">30+</div>
                             <div className="text-xs md:text-sm font-semibold text-slate-500 uppercase tracking-wider">Projects Delivered</div>
                         </motion.div>
                         <motion.div whileHover={{ scale: 1.05 }} className="p-4 border-r border-slate-100 last:border-0 transition-transform">
-                            <div className="text-3xl md:text-5xl font-black font-heading text-primary-600 mb-1">99%</div>
+                            <div className="text-3xl md:text-5xl font-black font-heading text-primary-600 mb-1">95%</div>
                             <div className="text-xs md:text-sm font-semibold text-slate-500 uppercase tracking-wider">Client Satisfaction</div>
                         </motion.div>
                         <motion.div whileHover={{ scale: 1.05 }} className="p-4 border-r border-slate-100 last:border-0 transition-transform">
-                            <div className="text-3xl md:text-5xl font-black font-heading text-slate-900 mb-1">15+</div>
-                            <div className="text-xs md:text-sm font-semibold text-slate-500 uppercase tracking-wider">Expert Engineers</div>
+                            <div className="text-3xl md:text-5xl font-black font-heading text-slate-900 mb-1">Expert</div>
+                            <div className="text-xs md:text-sm font-semibold text-slate-500 uppercase tracking-wider">Engineering Team</div>
                         </motion.div>
                         <motion.div whileHover={{ scale: 1.05 }} className="p-4 transition-transform">
-                            <div className="text-3xl md:text-5xl font-black font-heading text-primary-600 mb-1">5+</div>
+                            <div className="text-3xl md:text-5xl font-black font-heading text-primary-600 mb-1">3+</div>
                             <div className="text-xs md:text-sm font-semibold text-slate-500 uppercase tracking-wider">Years Experience</div>
                         </motion.div>
                     </motion.div>

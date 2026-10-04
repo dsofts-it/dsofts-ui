@@ -295,7 +295,7 @@ const Careers = () => {
                                                     required
                                                     value={formData.fullName}
                                                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                                                    placeholder="John Doe"
+                                                    placeholder="Full Name"
                                                     className="input-field text-sm"
                                                 />
                                             </div>
@@ -307,7 +307,7 @@ const Careers = () => {
                                                     required
                                                     value={formData.email}
                                                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                                    placeholder="john@example.com"
+                                                    placeholder="Email"
                                                     className="input-field text-sm"
                                                 />
                                             </div>
@@ -319,7 +319,7 @@ const Careers = () => {
                                                     required
                                                     value={formData.phone}
                                                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                                    placeholder="+91 9876543210"
+                                                    placeholder="Number"
                                                     className="input-field text-sm"
                                                 />
                                             </div>
@@ -330,7 +330,7 @@ const Careers = () => {
                                                     type="text"
                                                     value={formData.location}
                                                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                                                    placeholder="Pune, India"
+                                                    placeholder="Enter Location"
                                                     className="input-field text-sm"
                                                 />
                                             </div>
@@ -379,7 +379,7 @@ const Careers = () => {
                                                     type="url"
                                                     value={formData.portfolioUrl}
                                                     onChange={(e) => setFormData({ ...formData, portfolioUrl: e.target.value })}
-                                                    placeholder="https://githun.com"
+                                                    placeholder="https://github.com"
                                                     className="input-field text-sm"
                                                 />
                                             </div>

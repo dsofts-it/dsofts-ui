@@ -54,16 +54,45 @@ const AdminApplications = () => {
     const handleDownloadResume = async (appId, fileName) => {
         try {
             const res = await adminApi.downloadResume(appId);
-            const blob = new Blob([res.data], { type: res.headers['content-type'] });
+            const contentType = res.headers['content-type'] || 'application/pdf';
+            const blob = new Blob([res.data], { type: contentType });
+            
+            let downloadName = fileName || 'Resume.pdf';
+            const disposition = res.headers['content-disposition'];
+            if (disposition && disposition.includes('filename=')) {
+                const match = disposition.match(/filename="?([^";]+)"?/);
+                if (match && match[1]) {
+                    downloadName = match[1];
+                }
+            }
+
             const url = window.URL.createObjectURL(blob);
             const link = document.createElement('a');
             link.href = url;
-            link.setAttribute('download', fileName || 'Resume.pdf');
+            link.setAttribute('download', downloadName);
             document.body.appendChild(link);
             link.click();
             link.remove();
+            setTimeout(() => window.URL.revokeObjectURL(url), 1000);
         } catch (err) {
-            alert('Could not download resume file.');
+            console.error('Resume download error:', err);
+            let message = 'Could not download resume file.';
+            if (err.response && err.response.data) {
+                if (err.response.data instanceof Blob) {
+                    try {
+                        const text = await err.response.data.text();
+                        const parsed = JSON.parse(text);
+                        if (parsed.message) message = parsed.message;
+                    } catch (e) {
+                        // fallback
+                    }
+                } else if (err.response.data.message) {
+                    message = err.response.data.message;
+                }
+            } else if (err.message) {
+                message = err.message;
+            }
+            alert(message);
         }
     };
 

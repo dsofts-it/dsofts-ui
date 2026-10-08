@@ -91,7 +91,7 @@ const ProjectDetails = () => {
     }
 
     return (
-        <div className="min-h-screen bg-slate-50 pb-20 pt-20">
+        <div className="min-h-screen bg-slate-50 pb-20">
             <SEO
                 title={project.title}
                 description={project.shortDescription}

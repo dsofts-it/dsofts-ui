@@ -43,7 +43,7 @@ const CaseStudyDetail = () => {
     }
 
     return (
-        <div className="pt-24 pb-20 bg-slate-50 min-h-screen">
+        <div className="py-10 bg-slate-50 min-h-screen">
             <SEO
                 title={study.title}
                 description={study.summary}

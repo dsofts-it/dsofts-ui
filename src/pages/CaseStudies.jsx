@@ -24,7 +24,7 @@ const CaseStudies = () => {
     }, []);
 
     return (
-        <div className="pt-24 pb-20">
+        <div className="pb-20">
             <SEO
                 title="Case Studies"
                 description="Explore detailed case studies of digital product engineering projects delivered by DSofts IT Services."

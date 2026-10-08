@@ -114,7 +114,7 @@ const Careers = () => {
     };
 
     return (
-        <div className="pt-24 pb-20 bg-slate-50 min-h-screen">
+        <div className="pb-20 bg-slate-50 min-h-screen">
             <SEO
                 title="Careers Portal"
                 description="Explore career opportunities at DSofts IT Services. Build modern web, mobile, and enterprise digital solutions with our expert engineering team."

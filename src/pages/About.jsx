@@ -35,7 +35,7 @@ const About = () => {
     ];
 
     return (
-        <div className="pt-24 pb-20">
+        <div className="pb-20">
             <SEO
                 title="About Us"
                 description="Learn about DSofts IT Services - our mission, vision, engineering philosophy, and expert software product team."

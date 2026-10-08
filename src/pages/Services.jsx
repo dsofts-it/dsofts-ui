@@ -155,7 +155,7 @@ const Services = () => {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 pt-24 pb-20">
+        <div className="min-h-screen bg-slate-50 pb-20">
             <SEO
                 title="Our Services"
                 description="Explore DSofts IT Services software development capabilities - Web Apps, Mobile Apps, Custom CRM, Full-Stack Engineering, Cloud, and AI."

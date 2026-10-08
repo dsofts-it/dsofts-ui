@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const TermsConditions = () => {
     return (
-        <div className="pt-24 pb-20 bg-slate-50 min-h-screen">
+        <div className="py-10 bg-slate-50 min-h-screen">
             <SEO
                 title="Terms & Conditions"
                 description="Terms and conditions for using DSofts IT Services platform and software development services."

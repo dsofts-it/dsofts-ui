@@ -44,7 +44,7 @@ const Solutions = () => {
     ];
 
     return (
-        <div className="pt-24 pb-20">
+        <div className="pb-20">
             <SEO
                 title="Industry Solutions"
                 description="Tailored software and product development solutions for Startups, E-commerce, FinTech, Healthcare, Real Estate, and Education."

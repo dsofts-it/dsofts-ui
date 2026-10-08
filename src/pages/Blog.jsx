@@ -73,7 +73,7 @@ const Blog = () => {
     );
 
     return (
-        <div className="pt-24 pb-20 bg-slate-50 min-h-screen">
+        <div className="pb-20 bg-slate-50 min-h-screen">
             <SEO
                 title="Blog & Articles"
                 description="Engineering insights, technology trends, and software architecture articles from DSofts IT Services."

@@ -79,22 +79,19 @@ const Blog = () => {
                 description="Engineering insights, technology trends, and software architecture articles from DSofts IT Services."
             />
 
-            <section className="bg-slate-900 text-white py-20 relative overflow-hidden">
-                <div className="container-custom relative z-10 text-center max-w-4xl mx-auto">
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-primary-500/10 text-primary-400 font-semibold text-xs uppercase tracking-widest border border-primary-500/20 mb-6">
-                        DSofts Engineering Blog
-                    </span>
-                    <h1 className="text-4xl md:text-6xl font-bold mb-6 font-heading">
-                        Insights & Technical Articles
-                    </h1>
-                    <p className="text-lg text-slate-300 font-light max-w-2xl mx-auto">
-                        Explore modern web architecture, cloud engineering best practices, mobile development, and product design strategies.
-                    </p>
-                </div>
-            </section>
-
-            <section className="py-16">
+            <section className="py-10">
                 <div className="container-custom max-w-6xl mx-auto">
+                    <div className="text-center max-w-3xl mx-auto mb-10">
+                        <span className="inline-block px-3.5 py-1 rounded-full bg-primary-50 text-primary-700 font-semibold text-xs uppercase tracking-wider mb-3">
+                            DSofts Engineering Blog
+                        </span>
+                        <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 font-heading mb-4">
+                            Insights & Technical Articles
+                        </h1>
+                        <p className="text-slate-600 text-sm md:text-base leading-relaxed">
+                            Explore modern web architecture, cloud engineering best practices, mobile development, and product design strategies.
+                        </p>
+                    </div>
                     {/* Search Bar */}
                     <div className="max-w-xl mx-auto mb-12 relative">
                         <input

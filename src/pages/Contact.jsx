@@ -70,26 +70,19 @@ const Contact = () => {
                 description="Get in touch with DSofts IT Services. Start a project, request a consultation, or talk to our software engineering team."
             />
 
-            {/* Header */}
-            <div className="bg-slate-900 text-white py-20 relative overflow-hidden">
-                <div className="container-custom text-center max-w-4xl mx-auto relative z-10">
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-primary-500/10 text-primary-400 font-semibold text-xs uppercase tracking-widest border border-primary-500/20 mb-6">
+            {/* Contact Form & Info directly at top */}
+            <div className="container-custom py-10 max-w-6xl mx-auto">
+                <div className="text-center max-w-3xl mx-auto mb-10">
+                    <span className="inline-block px-3.5 py-1 rounded-full bg-primary-50 text-primary-700 font-semibold text-xs uppercase tracking-wider mb-3">
                         Start a Project
                     </span>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-6xl font-bold font-heading mb-6"
-                    >
-                        Let's Engineer Your Digital Vision.
-                    </motion.h1>
-                    <p className="text-lg text-slate-300 max-w-2xl mx-auto font-light">
+                    <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 font-heading mb-4">
+                        Let's Engineer Your Digital Vision
+                    </h1>
+                    <p className="text-slate-600 text-sm md:text-base leading-relaxed">
                         Have a new application concept, software requirement, or technical question? We are ready to help.
                     </p>
                 </div>
-            </div>
-
-            <div className="container-custom py-16 max-w-6xl mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                     {/* Contact Info Sidebar */}
                     <div className="lg:col-span-4 space-y-8">

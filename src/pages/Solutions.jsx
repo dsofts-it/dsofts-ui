@@ -50,22 +50,19 @@ const Solutions = () => {
                 description="Tailored software and product development solutions for Startups, E-commerce, FinTech, Healthcare, Real Estate, and Education."
             />
 
-            <section className="bg-slate-900 text-white py-20 relative overflow-hidden">
-                <div className="container-custom relative z-10 text-center max-w-4xl mx-auto">
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-primary-500/10 text-primary-400 font-semibold text-xs uppercase tracking-widest border border-primary-500/20 mb-6">
-                        Tailored Technology Solutions
-                    </span>
-                    <h1 className="text-4xl md:text-6xl font-bold mb-6 font-heading">
-                        Engineered for Your Industry's Specific Challenges.
-                    </h1>
-                    <p className="text-lg text-slate-300 font-light max-w-2xl mx-auto">
-                        Whether launch-ready MVPs for startups or high-load transactional enterprise apps, DSofts IT Services builds tailored solutions optimized for performance.
-                    </p>
-                </div>
-            </section>
-
-            <section className="py-20 bg-white">
+            <section className="py-10 bg-white">
                 <div className="container-custom">
+                    <div className="text-center max-w-3xl mx-auto mb-12">
+                        <span className="inline-block px-3.5 py-1 rounded-full bg-primary-50 text-primary-700 font-semibold text-xs uppercase tracking-wider mb-3">
+                            Tailored Technology Solutions
+                        </span>
+                        <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 font-heading mb-4">
+                            Engineered for Your Industry's Specific Challenges
+                        </h1>
+                        <p className="text-slate-600 text-sm md:text-base leading-relaxed">
+                            Whether launch-ready MVPs for startups or high-load transactional enterprise apps, DSofts IT Services builds tailored solutions optimized for performance.
+                        </p>
+                    </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {industries.map((ind, i) => (
                             <motion.div

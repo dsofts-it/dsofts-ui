@@ -30,22 +30,19 @@ const CaseStudies = () => {
                 description="Explore detailed case studies of digital product engineering projects delivered by DSofts IT Services."
             />
 
-            <section className="bg-slate-900 text-white py-20 relative overflow-hidden">
-                <div className="container-custom relative z-10 text-center max-w-4xl mx-auto">
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-primary-500/10 text-primary-400 font-semibold text-xs uppercase tracking-widest border border-primary-500/20 mb-6">
-                        Client Success Stories
-                    </span>
-                    <h1 className="text-4xl md:text-6xl font-bold mb-6 font-heading">
-                        In-Depth Engineering Case Studies
-                    </h1>
-                    <p className="text-lg text-slate-300 font-light max-w-2xl mx-auto">
-                        See how DSofts IT Services solves complex technical challenges and delivers measurable commercial outcomes.
-                    </p>
-                </div>
-            </section>
-
-            <section className="py-20 bg-white">
+            <section className="py-10 bg-white">
                 <div className="container-custom">
+                    <div className="mb-10 text-center max-w-3xl mx-auto">
+                        <span className="inline-block px-3.5 py-1 rounded-full bg-primary-50 text-primary-700 font-semibold text-xs uppercase tracking-wider mb-3">
+                            Client Success Stories
+                        </span>
+                        <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 font-heading mb-4">
+                            In-Depth Engineering Case Studies
+                        </h1>
+                        <p className="text-slate-600 text-sm md:text-base leading-relaxed">
+                            See how DSofts IT Services solves complex technical challenges and delivers measurable commercial outcomes.
+                        </p>
+                    </div>
                     {loading ? (
                         <div className="space-y-8">
                             {[1, 2].map((i) => (

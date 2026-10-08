@@ -161,27 +161,19 @@ const Services = () => {
                 description="Explore DSofts IT Services software development capabilities - Web Apps, Mobile Apps, Custom CRM, Full-Stack Engineering, Cloud, and AI."
             />
 
-            {/* Header */}
-            <div className="bg-slate-900 text-white py-20 relative overflow-hidden">
-                <div className="container-custom text-center max-w-4xl mx-auto relative z-10">
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-primary-500/10 text-primary-400 font-semibold text-xs uppercase tracking-widest border border-primary-500/20 mb-6">
+            {/* Services Grid directly at top */}
+            <div className="container-custom py-10">
+                <div className="text-center max-w-3xl mx-auto mb-12">
+                    <span className="inline-block px-3.5 py-1 rounded-full bg-primary-50 text-primary-700 font-semibold text-xs uppercase tracking-wider mb-3">
                         End-to-End Product Engineering
                     </span>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-6xl font-bold font-heading mb-6"
-                    >
+                    <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 font-heading mb-4">
                         Our Services & Expertise
-                    </motion.h1>
-                    <p className="text-lg text-slate-300 max-w-2xl mx-auto font-light">
+                    </h1>
+                    <p className="text-slate-600 text-sm md:text-base leading-relaxed">
                         Tailored software solutions engineered with high-performance architectures to solve complex business challenges.
                     </p>
                 </div>
-            </div>
-
-            {/* Services Grid */}
-            <div className="container-custom py-16">
                 {loading ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {[1, 2, 3].map((i) => (

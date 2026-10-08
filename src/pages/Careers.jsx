@@ -120,29 +120,16 @@ const Careers = () => {
                 description="Explore career opportunities at DSofts IT Services. Build modern web, mobile, and enterprise digital solutions with our expert engineering team."
             />
 
-            {/* Careers Hero */}
-            <section className="bg-slate-900 text-white py-20 relative overflow-hidden">
-                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#0284c7_1px,transparent_1px)] [background-size:24px_24px]"></div>
-                <div className="container-custom relative z-10 text-center max-w-4xl mx-auto">
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-primary-500/10 text-primary-400 font-semibold text-xs uppercase tracking-widest border border-primary-500/20 mb-6">
-                        Join DSofts Engineering
-                    </span>
-                    <h1 className="text-4xl md:text-6xl font-bold mb-6 font-heading">
-                        Build Your Future With Us
-                    </h1>
-                    <p className="text-lg md:text-xl text-slate-300 font-light leading-relaxed max-w-2xl mx-auto">
-                        At DSofts IT Services, we foster a collaborative, engineering-first culture. Work on modern React, Node, Flutter, and Cloud tech stacks alongside passionate teammates.
-                    </p>
-                </div>
-            </section>
-
-            {/* Open Positions */}
-            <section className="py-16">
+            {/* Open Positions directly at top */}
+            <section className="py-10">
                 <div className="container-custom max-w-5xl mx-auto">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
                         <div>
-                            <h2 className="text-3xl font-bold text-slate-900 font-heading">Current Openings</h2>
-                            <p className="text-slate-600 text-sm">Explore active career opportunities and apply directly.</p>
+                            <span className="inline-block px-3 py-1 rounded-full bg-primary-50 text-primary-700 font-semibold text-xs uppercase tracking-wider mb-2">
+                                Join DSofts Engineering
+                            </span>
+                            <h1 className="text-3xl md:text-4xl font-black text-slate-900 font-heading">Careers & Open Positions</h1>
+                            <p className="text-slate-600 text-sm mt-1">Explore active career opportunities and apply directly to build scalable digital products with us.</p>
                         </div>
 
                         {/* Department Filters */}

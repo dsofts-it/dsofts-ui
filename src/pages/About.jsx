@@ -41,32 +41,18 @@ const About = () => {
                 description="Learn about DSofts IT Services - our mission, vision, engineering philosophy, and expert software product team."
             />
 
-            {/* Hero Section */}
-            <section className="bg-slate-900 text-white py-20 relative overflow-hidden">
-                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:24px_24px]"></div>
-                <div className="container-custom relative z-10 text-center max-w-4xl mx-auto">
-                    <motion.span
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="inline-block px-4 py-1.5 rounded-full bg-primary-500/10 text-primary-400 font-semibold text-xs uppercase tracking-widest border border-primary-500/20 mb-6"
-                    >
+            {/* Clean Integrated Header directly at top */}
+            <section className="py-10 bg-white">
+                <div className="container-custom text-center max-w-4xl mx-auto">
+                    <span className="inline-block px-3.5 py-1 rounded-full bg-primary-50 text-primary-700 font-semibold text-xs uppercase tracking-wider mb-3">
                         About DSofts IT Services
-                    </motion.span>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-6xl font-bold mb-6 font-heading"
-                    >
-                        Engineering High-Performance Digital Solutions for Tomorrow.
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-lg md:text-xl text-slate-300 font-light leading-relaxed"
-                    >
+                    </span>
+                    <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 font-heading leading-tight">
+                        Engineering High-Performance Digital Solutions for Tomorrow
+                    </h1>
+                    <p className="text-slate-600 text-sm md:text-base leading-relaxed max-w-3xl mx-auto">
                         DSofts IT Services is a modern technology consulting and product development engineering company. We partner with ambitious startups and enterprises to build fast, scalable, and secure software platforms.
-                    </motion.p>
+                    </p>
                 </div>
             </section>
 

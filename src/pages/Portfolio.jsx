@@ -55,26 +55,19 @@ const Portfolio = () => {
                 description="Explore client projects, case studies, and modern digital software applications engineered by DSofts IT Services."
             />
 
-            {/* Header */}
-            <div className="bg-slate-900 text-white py-20 relative overflow-hidden">
-                <div className="container-custom text-center max-w-4xl mx-auto relative z-10">
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-primary-500/10 text-primary-400 font-semibold text-xs uppercase tracking-widest border border-primary-500/20 mb-6">
+            {/* Portfolio Showcase directly at top */}
+            <div className="container-custom py-10">
+                <div className="text-center max-w-3xl mx-auto mb-10">
+                    <span className="inline-block px-3.5 py-1 rounded-full bg-primary-50 text-primary-700 font-semibold text-xs uppercase tracking-wider mb-3">
                         Client Work Showcase
                     </span>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-6xl font-bold font-heading mb-6"
-                    >
+                    <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 font-heading mb-4">
                         Our Client Portfolio
-                    </motion.h1>
-                    <p className="text-lg text-slate-300 max-w-2xl mx-auto font-light">
+                    </h1>
+                    <p className="text-slate-600 text-sm md:text-base leading-relaxed">
                         A curated collection of web applications, mobile software, and digital solutions delivered for growing businesses.
                     </p>
                 </div>
-            </div>
-
-            <div className="container-custom py-16">
                 {/* Category Filters */}
                 <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-12 justify-start md:justify-center">
                     <FiFilter className="text-slate-400 flex-shrink-0 mr-1" />
